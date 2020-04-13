@@ -33,8 +33,9 @@ def calculateNGrams(piece_text:str, n : int)-> list:
 def mostFrequentNGram(piece_text:str, n: int)-> str:
     """Calculate the most frequente N-Gram from the posible  N-grams of the piece of text
     Complexity:
-        The complexity of the algorithm is O(k), on average, worst case esenario is O(k^2), in case there are 
-        colisions on hash table(dict)
+        The complexity of the algorithm is O(k) on average and worst case esenario is O(k^2) in case there are 
+        collisions on hash table(dict). However loops are O(k), staying linear ignoring possible hash table collisions,
+        k=l-n+1, which means complexity is defined by calculate nGrams which is O(l*n/2). 
 
     Arguments:
         piece_text {str} -- The text from where the  N-grams will be calculated
@@ -50,7 +51,7 @@ def mostFrequentNGram(piece_text:str, n: int)-> str:
     
     #NOTE: k = length of list of n_grams
     #creates an empty dict to be filled with n_grams, dicts in python are liked hash table, search is O(1)
-    #if there are less colissiones, in these case no colisions can happend due to the fact we want one value for each key.
+    #if there are less colissiones, in these case no collisions can happend due to the fact we want one value for each key.
     dict_ngrams = dict()
     #O(k) loop worst O(k*k)
     for n_g in n_grams:
@@ -69,9 +70,9 @@ def mostFrequentNGram(piece_text:str, n: int)-> str:
     return common
 
 print(calculateNGrams("Slang",2))
-print(calculateNGrams("to be or not to be",9))
+print(calculateNGrams("to be or not to be",2))
 
 print(mostFrequentNGram("to be or not to be",2))      
-print(mostFrequentNGram("to be or not to be to to be be the the not be be",2))      
+print(mostFrequentNGram("to be or not to be to to be be the the not be be",3))      
 
 print(mostFrequentNGram("The Internet was done so well that most people think of it as a natural resource like the Pacific Ocean, rather than something that was man-made. When was the last time a technology with a scale like that was so error-free? The Web, in comparison, is a joke. The Web was done by amateurs. " ,3))
